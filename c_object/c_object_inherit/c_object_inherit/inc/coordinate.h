@@ -3,7 +3,7 @@
 
 
 
-//shape属性
+//coordinate属性
 typedef struct coordinate
 {
     short int x;
