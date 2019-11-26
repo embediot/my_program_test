@@ -6,12 +6,12 @@
 
 
 
-//创建一个shape对象
-P_COORDINATE_T shape_create(short int x,short int y)
+//创建一个coordinate对象
+P_COORDINATE_T coordinate_create(short int x,short int y)
 {
-    if((x == 0) || (y == 0))
+    if((x < 0) || (y < 0))
     {
-        printf("shape creat error! x or y can not be zero \n");
+        printf("shape creat error! x or y can not be less than zero \n");
         return NULL;
     }
 
@@ -22,20 +22,18 @@ P_COORDINATE_T shape_create(short int x,short int y)
     if(NULL != p_coordiante)
     {
         p_coordiante->x = x;
-        p_coordiante->y = y;
-
-        return p_coordiante;
+        p_coordiante->y = y;       
     }
     else
     {
-        printf("shape malloc error! \n");
+        printf("coordinate malloc error! \n");
     }
     
-    return NULL;
+    return p_coordiante;
 }
 
-//销毁一个shape对象
-void shape_destroy(P_COORDINATE_T p_coordiante)
+//销毁一个coordinate对象
+void coordinate_destroy(P_COORDINATE_T p_coordiante)
 {
     if(NULL != p_coordiante)
     {
@@ -44,8 +42,8 @@ void shape_destroy(P_COORDINATE_T p_coordiante)
     }
 }
 
-//修改shape的属性值
-void shape_moveby(P_COORDINATE_T p_coordiante,short int dx,short int dy)
+//修改coordinate的属性值
+void coordinate_moveby(P_COORDINATE_T p_coordiante,short int dx,short int dy)
 {
     if(NULL != p_coordiante)
     {
@@ -54,8 +52,8 @@ void shape_moveby(P_COORDINATE_T p_coordiante,short int dx,short int dy)
     }
 }
 
-//获取shape的属性值x
-short int shape_get_x(P_COORDINATE_T p_coordiante)
+//获取coordinate的属性值x
+short int coordinate_get_x(P_COORDINATE_T p_coordiante)
 {
     if(NULL != p_coordiante)
     {
@@ -67,8 +65,8 @@ short int shape_get_x(P_COORDINATE_T p_coordiante)
     }
 }
 
-//获取shape的属性值y
-short int shape_get_y(P_COORDINATE_T p_coordiante)
+//获取coordinate的属性值y
+short int coordinate_get_y(P_COORDINATE_T p_coordiante)
 {
     if(NULL != p_coordiante)
     {
@@ -86,33 +84,33 @@ short int shape_get_y(P_COORDINATE_T p_coordiante)
 
 
 //测试函数，在main中调用，用户测试以上的接口
-void shape_test_function(void)
+void coordinate_test_function(void)
 {
     P_COORDINATE_T p_coordiante_1 = NULL;
     P_COORDINATE_T p_coordiante_2 = NULL;
 
-    p_coordiante_1 = (P_COORDINATE_T)shape_create(100,200);
+    p_coordiante_1 = (P_COORDINATE_T)coordinate_create(100,200);
     if(NULL == p_coordiante_1)
     {
         printf("p_coordiante_1 create error! \n");
     }
 
-    p_coordiante_2 = (P_COORDINATE_T)shape_create(10,20);
+    p_coordiante_2 = (P_COORDINATE_T)coordinate_create(10,20);
     if(NULL == p_coordiante_2)
     {
         printf("p_coordiante_2 create error! \n");
     }
 
-    printf("p_coordiante_1 x = %d, y = %d \n",shape_get_x(p_coordiante_1), shape_get_y(p_coordiante_1));
-    printf("p_coordiante_2 x = %d, y = %d \n",shape_get_x(p_coordiante_2), shape_get_y(p_coordiante_2));
+    printf("p_coordiante_1 x = %d, y = %d \n",coordinate_get_x(p_coordiante_1), coordinate_get_y(p_coordiante_1));
+    printf("p_coordiante_2 x = %d, y = %d \n",coordinate_get_x(p_coordiante_2), coordinate_get_y(p_coordiante_2));
 
-    shape_moveby(p_coordiante_1,50,50);
-    shape_moveby(p_coordiante_2,50,50);
+    coordinate_moveby(p_coordiante_1,50,50);
+    coordinate_moveby(p_coordiante_2,50,50);
 
-    printf("after moveby p_coordiante_1 x = %d, y = %d \n",shape_get_x(p_coordiante_1), shape_get_y(p_coordiante_1));
-    printf("after moveby p_coordiante_2 x = %d, y = %d \n",shape_get_x(p_coordiante_2), shape_get_y(p_coordiante_2));
+    printf("after moveby p_coordiante_1 x = %d, y = %d \n",coordinate_get_x(p_coordiante_1), coordinate_get_y(p_coordiante_1));
+    printf("after moveby p_coordiante_2 x = %d, y = %d \n",coordinate_get_x(p_coordiante_2), coordinate_get_y(p_coordiante_2));
 
-    shape_destroy(p_coordiante_1);
-    shape_destroy(p_coordiante_2);
+    coordinate_destroy(p_coordiante_1);
+    coordinate_destroy(p_coordiante_2);
 }
 

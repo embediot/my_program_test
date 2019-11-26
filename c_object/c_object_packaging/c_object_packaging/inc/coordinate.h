@@ -3,7 +3,7 @@
 
 
 
-//coordinate属性
+//创建一个位置类对象，属性为坐标x，y
 typedef struct coordinate
 {
     short int x;
