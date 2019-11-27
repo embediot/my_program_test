@@ -14,19 +14,11 @@ P_RECTANGLE_T rectangle_create(short int x,short int y,unsigned short width,unsi
 
     if(NULL != p_rectangle)
     {
-        p_rectangle->p_coordinate = NULL;
-        p_rectangle->p_coordinate = coordinate_create(x,y);
+        p_rectangle->coordinate.x = x;
+        p_rectangle->coordinate.y = y;
 
-        if(NULL != p_rectangle->p_coordinate)
-        {
-            p_rectangle->width = width;
-            p_rectangle->height = height;
-        }
-        else
-        {
-            printf(" p_rectangle->p_coordinate create error! \n");
-        }
-        
+        p_rectangle->width = width;
+        p_rectangle->height = height;
     }
     else
     {
@@ -40,12 +32,6 @@ P_RECTANGLE_T rectangle_create(short int x,short int y,unsigned short width,unsi
 //销毁一个rectangle类对象
 void rectangle_destroy(P_RECTANGLE_T p_rectangle)
 {
-    if(NULL != p_rectangle->p_coordinate)
-    {
-        free(p_rectangle->p_coordinate);
-        p_rectangle->p_coordinate = NULL;
-    }
-
     if(NULL != p_rectangle)
     {
         free(p_rectangle);
@@ -69,22 +55,22 @@ void rectangle_test_function(void)
     if((NULL != p_rectangle_1) && (NULL != p_rectangle_2))
     {
         printf("p_rectangle_1,x = %d,y = %d,width = %d,height = %d \n",\
-                coordinate_get_x(p_rectangle_1->p_coordinate),coordinate_get_y(p_rectangle_1->p_coordinate),\
+                coordinate_get_x(&(p_rectangle_1->coordinate)),coordinate_get_y(&(p_rectangle_1->coordinate)),\
                 p_rectangle_1->width,p_rectangle_1->height);
 
         printf("p_rectangle_2,x = %d,y = %d,width = %d,height = %d \n",\
-                coordinate_get_x(p_rectangle_2->p_coordinate),coordinate_get_y(p_rectangle_2->p_coordinate),\
+                coordinate_get_x(&(p_rectangle_2->coordinate)),coordinate_get_y(&(p_rectangle_2->coordinate)),\
                 p_rectangle_2->width,p_rectangle_2->height);
 
-        coordinate_moveby(p_rectangle_1->p_coordinate, 20, 20);
-        coordinate_moveby(p_rectangle_2->p_coordinate, 50, 50);     //
+        coordinate_moveby((P_COORDINATE_T)p_rectangle_1, 20, 20);
+        coordinate_moveby(&(p_rectangle_2->coordinate), 50, 50);     //
 
-        printf("after moveby,p_rectangle_1,x = %d,y = %d,width = %d,height = %d \n",\
-                coordinate_get_x(p_rectangle_1->p_coordinate),coordinate_get_y(p_rectangle_1->p_coordinate),\
+        printf("after moveby, p_rectangle_1, x = %d, y = %d, width = %d, height = %d \n",\
+                coordinate_get_x(&(p_rectangle_1->coordinate)),coordinate_get_y(&(p_rectangle_1->coordinate)),\
                 p_rectangle_1->width,p_rectangle_1->height);
 
-        printf("after moveby,p_rectangle_2,x = %d,y = %d,width = %d,height = %d \n",\
-                coordinate_get_x(p_rectangle_2->p_coordinate),coordinate_get_y(p_rectangle_2->p_coordinate),\
+        printf("after moveby, p_rectangle_2, x = %d, y = %d, width = %d, height = %d \n",\
+                coordinate_get_x(&(p_rectangle_2->coordinate)),coordinate_get_y(&(p_rectangle_2->coordinate)),\
                 p_rectangle_2->width,p_rectangle_2->height);
     }
     else

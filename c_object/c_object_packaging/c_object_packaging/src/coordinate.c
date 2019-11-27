@@ -57,27 +57,31 @@ void coordinate_moveby(P_COORDINATE_T p_coordiante,short int dx,short int dy)
 //获取coordinate的属性值x
 short int coordinate_get_x(P_COORDINATE_T p_coordiante)
 {
-    if(NULL != p_coordiante)
-    {
-        return p_coordiante->x;
-    }
-    else
-    {
-        return -1;
-    }
+    // if(NULL != p_coordiante)
+    // {
+    //     return p_coordiante->x;
+    // }
+    // else
+    // {
+    //     return -1;
+    // }
+
+    return (NULL != p_coordiante) ? p_coordiante->x : -1;
 }
 
 //获取coordinate的属性值y
 short int coordinate_get_y(P_COORDINATE_T p_coordiante)
 {
-    if(NULL != p_coordiante)
-    {
-        return p_coordiante->y;
-    }
-    else
-    {
-        return -1;
-    }
+    // if(NULL != p_coordiante)
+    // {
+    //     return p_coordiante->y;
+    // }
+    // else
+    // {
+    //     return -1;
+    // }
+
+    return (NULL != p_coordiante) ? p_coordiante->y : -1;
 }
 
 

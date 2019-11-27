@@ -9,7 +9,7 @@
 //创建一个rectangle类，继承coordinate类
 typedef struct rectangle
 {
-    P_COORDINATE_T p_coordinate; //父类，必须放在首位
+    COORDINATE_T coordinate; //父类，必须放在首位
 
     unsigned short width;
     unsigned short height;
